@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>3 Attributes</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dygraph/2.1.0/dygraph.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dygraph/2.1.0/dygraph.min.css" />
+</head>
+<body>
+
+    <h1>Sine Graph</h1>
+
+    <br><br>
+    <label for="cycleCount">Enter number of cycles:</label>
+    <input type="text" name="cycleCount" id="cycleCount" value="1"> <br>
+    <label for="cycleCount">Enter number data-points:</label>
+    <input type="text" name="dataPoints" id="dataPoints" value="1000"><br>
+    <input type="button" value="Generate">
+    <div id="sun"></div>
+
+   
+
+
+    
+    <script type="text/javascript">
+
+$(document).ready( function(){
+
+    Qwerty = new Dygraph(
+  document.getElementById('sun'),
+  generateSIN(),
+  {
+      animatedZooms:true
+  }
+);
+
+    function generateSIN(){
+        console.log("generateSIN");
+       
+        var arrayLen = $('#dataPoints').val();
+        var cycles = $('#cycleCount').val();
+        
+        var vInputString = "sampleNo,Voltage(uV)"+"\n"
+        for(i=0;i<arrayLen;i++){
+          xTime = (i/arrayLen)*cycles;
+          yVoltage = Math.sin((i/arrayLen)*(cycles*2)*Math.PI);
+          vInputString += xTime.toString()+","+ (yVoltage).toString()+"\n";
+        
+        
+        };
+
+        return vInputString;
+
+    }
+
+    
+
+$('input[type="button"]').click( function(){
+
+      Qwerty = new Dygraph(
+        document.getElementById('sun'),
+        generateSIN(),
+        {
+            animatedZooms:true
+        }
+    )
+}
+)
+
+//
+
+$('#cycleCount').change( function(){
+
+Qwerty = new Dygraph(
+  document.getElementById('sun'),
+  generateSIN(),
+  {
+      animatedZooms:true
+  }
+)
+}
+);
+
+//
+
+$('#dataPoints').change( function(){
+
+Qwerty = new Dygraph(
+  document.getElementById('sun'),
+  generateSIN(),
+  {
+      animatedZooms:true
+  }
+)
+}
+);
+
+
+
+})
+    </script>
+</body>
+</html>
