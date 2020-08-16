@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Demo - DyGraphs</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dygraph/2.1.0/dygraph.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dygraph/2.1.0/dygraph.min.css" />
+</head>
+<body>
+    <h1>Sin Graph</h1> 
+    <br><br>
+    <div id="sinGraph">
+
+    </div>
+    <script type="text/javascript">
+
+    var input =        `sampleNo, Voltage(uV)
+0,0
+1,0.003
+2,0.006
+3,0.009000000000000001
+4,0.012
+5,0.015
+6,0.018000000000000002
+7,0.021
+8,0.024
+9,0.026999999999999996
+10,0.03`;
+
+
+var inputStr = generateSIN();
+
+console.log(inputStr)
+    
+    graph = new Dygraph(
+       document.getElementById('sinGraph'),
+       inputStr
+
+    );
+
+    function generateSIN(){
+        
+
+var arrayLen = 1000;
+var cycles = 5;
+
+var vInputString = "sampleNo,Voltage(uV)"+"\n"
+for(i=0;i<arrayLen;i++){
+  xTime = (i/arrayLen)*cycles;
+  yVoltage = Math.sin((i/arrayLen)*cycles*Math.PI);
+  vInputString += xTime.toString()+","+ (yVoltage).toString()+"\n";
+
+
+}
+return vInputString;
+        
+
+    }
+    </script>
+</body>
+</html>
